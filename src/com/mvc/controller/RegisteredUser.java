@@ -1,4 +1,4 @@
-package com.mvc.controller;//package ecinema;
+package com.mvc.controller;
 import java.io.PrintWriter;
 import java.sql.*;
 import java.lang.String;
@@ -227,7 +227,7 @@ public class RegisteredUser {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(TEST);
-            String query = "DELETE FROM RegisteredUser WHERE Email = ?";
+            String query = "DELETE FROM users WHERE Email = ?";
             pstmt = con.prepareStatement(query);
 
             pstmt.setString(1, EMAIL);
@@ -274,6 +274,107 @@ public class RegisteredUser {
         //for now, just reset to clear user crap
         reset();
     }
+
+    //updates database with updated info using array crap
+    public void updateUserInfo(String email, String infoType, String update) {
+        //update where email = ?//DO NOT ALLOW EMAIL BE CHANGED!
+        //the following variables should not be touched by reg-users
+        //email, status, and usertype
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection(TEST);//change later to different URL if needed
+
+            String type = "";
+            switch(infoType) {
+                case "PW": type = "password"; break;
+                case "FN": type = "firstName"; break;
+                case "LN": type = "lastName"; break;
+                case "PN": type = "phone"; break;
+                case "PS": type = "promoSub"; break;
+            }
+
+            String query = new StringBuilder().append("UPDATE users SET ").append(type).append(" = ? WHERE email = ? ").toString();
+
+
+            pstmt = con.prepareStatement(query);
+            int num = 0;
+
+            switch(type) {
+                case "password": pstmt.setString(1,  update); break;
+                case "firstName": pstmt.setString(1,  update); break;
+                case "lastName": pstmt.setString(1,  update); break;
+                case "phone":  pstmt.setString(1, update); break;
+                case "promosub": num = Integer.parseInt(update); pstmt.setInt(1, num); break;
+            }
+
+            pstmt.setString(2,  email);
+
+            pstmt.executeUpdate();
+            pstmt.close();
+            con.close();
+
+        }catch(SQLException se) {
+            se.printStackTrace();
+        }catch(Exception e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if(pstmt!=null)
+                    pstmt.close();
+            }catch(SQLException se2) {
+            }
+            try {
+                if(con!=null)
+                    con.close();
+            }catch(SQLException se) {
+                se.printStackTrace();
+            }
+        }
+    }
+
+    public int getIDNum(String email) {
+        int idtoReturn = 0;//invalid if 0
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection(TEST);
+
+            String query = "SELECT userID FROM users WHERE email = ? ";
+            pstmt = con.prepareStatement(query);
+            pstmt.setString(1, email);
+            rs = pstmt.executeQuery();
+
+            while(rs.next())
+                idtoReturn = rs.getInt("userID");
+
+            rs.close();
+            pstmt.close();
+            con.close();
+        }catch(SQLException se) {
+            se.printStackTrace();
+        }catch(Exception e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if(pstmt!=null)
+                    pstmt.close();
+            }catch(SQLException se2) {
+            }
+            try {
+                if(con!=null)
+                    con.close();
+            }catch(SQLException se) {
+                se.printStackTrace();
+            }
+        }
+        return idtoReturn;
+    }
+
+    //Deletes entire Registered Users table, IRREVERSIBLE
+    //can be used in conjunction with timer to clear database but not necessary for this class
+    //Next revision, add opt of 1 or 2? 1 for delete which starts off at last digit once cleared? 2 for trunc, etc...
+
+
 
     //Deletes entire Registered User table, IRREVERSIBLE
     //can be used in conjunction with timer to clear database but not necessary for this class

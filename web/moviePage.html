@@ -12,7 +12,7 @@
 <body>
 <!-Link map for header-->
 <map name="header-links">
-    <area target="" alt="browse" title="browse" href="Browse.html" coords="227,204,347,237" shape="rect">
+    <area target="" alt="browse" title="browse" href="Browse.jsp" coords="227,204,347,237" shape="rect">
     <area target="" alt="account" title="account" href="signin.jsp" coords="353,203,473,237" shape="rect">
     <area target="" alt="home" title="home" href="index.jsp" coords="154,79,532,168" shape="rect">
 </map>
@@ -34,25 +34,37 @@
             </div>
             <div id="purchaseSection">
             <p>Number of tickets</p>
-            <form>
+            <form onsubmit="processTicketServlet" action="post">
                 Senior
-                <select id="seniorTicketNo">
-                    <option>1</option>
+                <select name="seniorTicketNo">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
                 </select>
                 Adult
-                <select id="adultTicketNo">
-                    <option>1</option>
+                <select name="adultTicketNo">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
                 </select>
                 Under 18
-                <select id="minorTicketNo">
-                    <option>1</option>
+                <select name="minorTicketNo">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
                 </select>
                 <p>
                     <input type="text"/><button>Add Promo Code</button>
                 </p>
                 <p>
                     <div id="selectSeatsButton">
-                        <button>Select Seats</button>
+                        <button type="submit">Select Seats</button>
                     </div>
                 </p>
             </form>

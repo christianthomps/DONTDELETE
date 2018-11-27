@@ -33,8 +33,9 @@ public class SigninServlet extends HttpServlet {
         if(validate){
             user.retrieveUsersData(email);
             HttpSession session=request.getSession();
-            session.setAttribute("e-mail",email);
+            session.setAttribute("email",email);
             session.setAttribute("name", user.getFNAME());
+            session.setMaxInactiveInterval(600);
             RequestDispatcher rd=request.getRequestDispatcher("/index.jsp");
             rd.forward(request,response);
         }

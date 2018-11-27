@@ -64,6 +64,7 @@ table, th, td {
     background-color: rgba(0,0,0,0.5);
     border: 5px solid white;
     box-shadow: 0 0 20px black;
+    align-content: center;
 }
 
 .content-text{

@@ -10,7 +10,7 @@
 <body>
 <!-Link map for header-->
 <map name="header-links">
-    <area target="" alt="browse" title="browse" href="Browse.html" coords="227,204,347,237" shape="rect">
+    <area target="" alt="browse" title="browse" href="Browse.jsp" coords="227,204,347,237" shape="rect">
     <area target="" alt="account" title="account" href="signin.jsp" coords="353,203,473,237" shape="rect">
     <area target="" alt="home" title="home" href="index.jsp" coords="154,79,532,168" shape="rect">
 </map>
@@ -19,11 +19,11 @@
     <div class="header">
         <div id="header-img"><img usemap="#header-links" src="Images/retroheader3.png"/></div>
     </div>
-
+<form onsubmit="selectSeatsServlet" method="post">
     <div class="content">
         <div class="theatre">
                 <h1>Please select a seat</h1>
-            <ol class="cabin fuselage">
+            <ol class="MovieTheatre">
                 <li class="row row--1">
                     <ol class="seats" type="A">
                         <li class="seat">
@@ -307,10 +307,10 @@
             </ol>
         </div>
         <p>
-            <button>continue</button>
+            <button type="submit" value="selectSeats">Pay Now</button>
         </p>
     </div>
-
+</form>
     <div id="footer">
 
     </div>

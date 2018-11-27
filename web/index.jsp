@@ -10,9 +10,8 @@
 <body>
 <!-Link map for header-->
 <map name="header-links">
-    <area target="" alt="browse" title="browse" href="Browse.html" coords="227,204,347,237" shape="rect">
-    <area target="" alt="account" title="account"
-          href=""  coords="353,203,473,237" shape="rect">
+    <area target="" alt="browse" title="browse" href="loadMovies" coords="227,204,347,237" shape="rect">
+    <area target="" alt="account" title="account" href="Authentication"  coords="353,203,473,237" shape="rect">
     <area target="" alt="home" title="home" href="index.jsp" coords="154,79,532,168" shape="rect">
 </map>
     <div id="wrapper">
@@ -26,7 +25,7 @@
             </div>
             <img id="browsepic" src="Images/cinema.jpg" />
             <a href="moviePage.html">moviePage.html</a>
-            <a href="selectSeats.html">selectSeats.html</a>
+            <a href="selectSeats.jsp">selectSeats.html</a>
             <a href="orderSummary.html">orderSummary.html</a>
             <a href="adminMain.html">adminMain.html</a>
             <a href="addPromo.html">addPromo.html</a>
